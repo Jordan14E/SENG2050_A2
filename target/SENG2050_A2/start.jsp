@@ -25,7 +25,6 @@
             <input type="text" name="oldUser" id="oldUser">
             <br/>
             <button type="submit" value="Existing">Load Existing</button>
-            <input type="hidden" value="1" name="pageID">
         </form>
     </div>
 </body>
