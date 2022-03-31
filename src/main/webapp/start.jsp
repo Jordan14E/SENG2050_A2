@@ -19,12 +19,12 @@
             <label for="newUser">New Username: </label>
             <input type="text" name="newUser" id="newUser">
             <br/>
-            <button type="submit" value="New">New Game</button>
+            <button type="submit" value="New" name="submit">New Game</button>
             <br/>
             <label for="oldUser">Existing Username: </label>
             <input type="text" name="oldUser" id="oldUser">
             <br/>
-            <button type="submit" value="Existing">Load Existing</button>
+            <button type="submit" value="Existing" name="submit">Load Existing</button>
             <input type="hidden" value="1" name="pageID">
         </form>
     </div>
