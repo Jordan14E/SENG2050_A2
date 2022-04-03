@@ -16,7 +16,7 @@ public class gameBean {
     gameBean(){
         nums = new int[11];
         secret = 0;
-        round = 0;
+        round = 1;
         user = "";
         Arrays.fill(nums, 0);
     }
@@ -24,7 +24,7 @@ public class gameBean {
     gameBean(int secretNum, String User){
         nums = new int[11];
         secret = secretNum;
-        round = 0;
+        round = 1;
         user = User;
         Arrays.fill(nums, 0);
     }
