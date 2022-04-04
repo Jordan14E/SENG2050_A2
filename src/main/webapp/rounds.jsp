@@ -19,18 +19,22 @@
             if(round >= 1){%>
                 <label for="1">Select 1st Number: </label>
                 <input type="number" min="1" max="11" name="1" id="1">
+                <br/>
            <%}%>
             <%if(round >= 2){%>
                 <label for="2">Select 2nd Number: </label>
                 <input type="number" min="1" max="11" name="2" id="2">
+                <br/>
             <%}%>
             <%if(round >= 3){%>
                 <label for="3">Select 3rd Number: </label>
                 <input type="number" min="1" max="11" name="3" id="3">
+                <br/>
             <%}%>
             <%if(round >= 4){%>
                 <label for="4">Select 4th Number: </label>
                 <input type="number" min="1" max="11" name="4" id="4">
+                <br/>
             <%}%>
         <input type="submit" value="Submit">
     </form>

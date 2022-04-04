@@ -36,7 +36,10 @@ public class Controller extends HttpServlet{
                     response.sendRedirect("start.jsp");
                 }
                 response.sendRedirect("rounds.jsp");
+                break;
             case 2:
+                game = roundPage(request, response);
+                break;
         }
 
     }
@@ -58,6 +61,58 @@ public class Controller extends HttpServlet{
         request.setAttribute("game", current);
         request.setAttribute("round", current.getRound());
         request.getRequestDispatcher("rounds.jsp").forward(request, response);
+        return current;
+    }
+
+    public gameBean roundPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        gameBean current;
+        current = game;
+        int num1 = 0, num2 = 0, num3 = 0, num4 = 0;
+
+        switch(game.getRound()){
+            case 1:
+                num1 = Integer.parseInt(request.getParameter("1"));
+                break;
+            case 2:
+                num1 = Integer.parseInt(request.getParameter("1"));
+                num2 = Integer.parseInt(request.getParameter("2"));
+                break;
+            case 3:
+                num1 = Integer.parseInt(request.getParameter("1"));
+                num2 = Integer.parseInt(request.getParameter("2"));
+                num3 = Integer.parseInt(request.getParameter("3"));
+                break;
+            case 4:
+                num1 = Integer.parseInt(request.getParameter("1"));
+                num2 = Integer.parseInt(request.getParameter("2"));
+                num3 = Integer.parseInt(request.getParameter("3"));
+                num4 = Integer.parseInt(request.getParameter("4"));
+                break;
+        }
+
+        if(num1 == game.getSecret() || num2 == game.getSecret() || num3 == game.getSecret() || num4 == game.getSecret()){
+            response.sendRedirect("start.jsp");
+        }
+        else{
+            boolean worked = game.revealNum(num1);
+            if(num2>0){
+            worked = game.revealNum(num2);}
+            if(num3>0){
+            worked = game.revealNum(num3);}
+            if(num4>0){
+            worked = game.revealNum(num4);}
+
+            if(!worked){
+                //something didn't work
+            }
+
+            game.incrementRound();
+
+        }
+
+
+
         return current;
     }
 

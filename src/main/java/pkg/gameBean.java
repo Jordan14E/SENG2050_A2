@@ -51,6 +51,7 @@ public class gameBean {
     }
 
     public boolean revealNum(int num){
+        num-=1;
         if(nums[num] == 0){
             nums[num] = 1;
             return true;
