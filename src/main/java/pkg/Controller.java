@@ -45,6 +45,10 @@ public class Controller extends HttpServlet{
                 break;
             case 3:
                 bankPage(request, response);
+                break;
+            case 4:
+                savePage(request, response);
+                break;
         }
 
     }
@@ -137,6 +141,12 @@ public class Controller extends HttpServlet{
         }
 
     }
+
+    public void savePage(HttpServletRequest request, HttpServletResponse response){
+
+
+    }
+
     public int generateSecret(){
 
         return (int) (Math.random()* 11);
