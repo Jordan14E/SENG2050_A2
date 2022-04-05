@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Controller extends HttpServlet{
 
-    sessionBean games;
-    static gameBean game;
+    private sessionBean games;
+    private static gameBean game;
 
     @Override
     public void init() throws ServletException {
@@ -103,22 +103,22 @@ public class Controller extends HttpServlet{
         }
 
         if(num1 == game.getSecret() || num2 == game.getSecret() || num3 == game.getSecret() || num4 == game.getSecret()){
-
-            request.setAttribute("offer",generateBankOffer());
-            request.setAttribute("type", "win");
+            request.setAttribute("type", "loss");
             request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
         else{
             boolean worked = game.revealNum(num1);
-            if(num2>0){
+            if(num2>0 && worked){
             worked = game.revealNum(num2);}
-            if(num3>0){
+            if(num3>0 && worked){
             worked = game.revealNum(num3);}
-            if(num4>0){
+            if(num4>0 && worked){
             worked = game.revealNum(num4);}
 
             if(!worked){
-                //something didn't work
+                request.setAttribute("game", game);
+                request.setAttribute("round", game.getRound());
+                request.getRequestDispatcher("rounds.jsp").forward(request, response);
             }
 
             game.incrementRound();
@@ -142,9 +142,16 @@ public class Controller extends HttpServlet{
 
     }
 
-    public void savePage(HttpServletRequest request, HttpServletResponse response){
-
-
+    public void savePage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(request.getParameter("submit").equals("yes")){
+        games.saveGame(game);
+        response.sendRedirect("start.jsp");}
+        else{
+            request.setAttribute("game", game);
+            request.setAttribute("round", game.getRound());
+            request.getRequestDispatcher("rounds.jsp").forward(request, response);
+            response.sendRedirect("");
+        }
     }
 
     public int generateSecret(){
@@ -157,8 +164,8 @@ public class Controller extends HttpServlet{
         int offer = 0;
 
         for(int i=0; i < game.getNums().length && offer == 0; i++){
-            if(game.getNums()[i] == 0 && i != game.getSecret()){
-                offer = i;
+            if(game.getNums()[i] == 0 && (i+1) != game.getSecret()){
+                offer = i+1;
             }
         }
 
