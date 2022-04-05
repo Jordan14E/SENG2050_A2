@@ -17,12 +17,18 @@
         <h2>You Won! Here is your prize: </h2>
         <br/>
         <p><%= request.getAttribute("offer")%></p>
+    <form action="game" method="post">
+        <button type="submit" value="accept">Accept</button>
+        <input type="hidden" value="3" name="pageID">
+    </form>
     <%} else{%>
         <h2>The bank is offering:</h2>
         <br/>
         <p><%= request.getAttribute("offer")%></p>
         <form action="game" method="post">
-            <input type="submit" value="accept">
+            <button type="submit" value="accept">Accept</button>
+            <button type="submit" value="continue">Continue</button>
+            <input type="hidden" value="3" name="pageID">
         </form>
     <%}%>
 
