@@ -28,8 +28,9 @@ public class sessionBean {
 
        gameBean game = games.get(user);
 
-       games.remove(user);  //removing game when it is loaded to stop back tracking
-
+       if(game != null){
+           games.remove(user);  //removing game when it is loaded to stop back tracking
+       }
        return game;
     }
 

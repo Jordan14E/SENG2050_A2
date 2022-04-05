@@ -35,7 +35,9 @@ public class Controller extends HttpServlet{
                 if(game == null){   //startPage didn't work for some reason
                     response.sendRedirect("start.jsp");
                 }
-                response.sendRedirect("rounds.jsp");
+                else {
+                    response.sendRedirect("rounds.jsp");
+                }
                 break;
             case 2:
                 roundPage(request, response);
@@ -57,6 +59,9 @@ public class Controller extends HttpServlet{
         }
         else if(request.getParameter("submit").equals("Existing") && request.getParameter("oldUser")!= null){
             current = games.findGame(request.getParameter("oldUser"));
+            if(current == null){
+                return current;
+            }
         }
         else{
             return null;
@@ -120,12 +125,18 @@ public class Controller extends HttpServlet{
         }
     }
 
-    public void bankPage(HttpServletRequest request, HttpServletResponse response){
+    public void bankPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
+        if(request.getParameter("submit").equals("accept")){
+            games.findGame(game.getUser());
+            game = null;
+            response.sendRedirect("start.jsp");
+        }
+        else{
+             response.sendRedirect("save.jsp");
+        }
 
     }
-
     public int generateSecret(){
 
         return (int) (Math.random()* 11);

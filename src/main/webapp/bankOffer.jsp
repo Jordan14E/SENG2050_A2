@@ -18,7 +18,7 @@
         <br/>
         <p><%= request.getAttribute("offer")%></p>
     <form action="game" method="post">
-        <button type="submit" value="accept">Accept</button>
+        <button type="submit" value="accept" name="submit">Accept</button>
         <input type="hidden" value="3" name="pageID">
     </form>
     <%} else{%>
@@ -26,8 +26,8 @@
         <br/>
         <p><%= request.getAttribute("offer")%></p>
         <form action="game" method="post">
-            <button type="submit" value="accept">Accept</button>
-            <button type="submit" value="continue">Continue</button>
+            <button type="submit" value="accept" name="submit">Accept</button>
+            <button type="submit" value="continue" name="submit">Continue</button>
             <input type="hidden" value="3" name="pageID">
         </form>
     <%}%>

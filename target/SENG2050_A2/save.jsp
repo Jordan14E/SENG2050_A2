@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Save Game</title>
 </head>
 <body>
-
+    <header><h1>Would you like to save and exit your game?</h1></header>
+    <form action="game" method="post">
+        <button type="submit" value="yes" name="submit">Save & Exit</button>
+        <button type="submit" value="no" name="submit">Continue</button>
+        <input type="hidden" value="4" name="pageID">
+    </form>
 </body>
 </html>
