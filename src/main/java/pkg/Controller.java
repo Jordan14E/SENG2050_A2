@@ -41,6 +41,8 @@ public class Controller extends HttpServlet{
                 roundPage(request, response);
                 response.sendRedirect("bankOffer.jsp");
                 break;
+            case 3:
+                bankPage(request, response);
         }
 
     }
@@ -116,6 +118,12 @@ public class Controller extends HttpServlet{
             request.setAttribute("type", "continue");
             request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
+    }
+
+    public void bankPage(HttpServletRequest request, HttpServletResponse response){
+
+
+
     }
 
     public int generateSecret(){
