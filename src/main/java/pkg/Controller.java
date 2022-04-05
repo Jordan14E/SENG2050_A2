@@ -38,7 +38,8 @@ public class Controller extends HttpServlet{
                 response.sendRedirect("rounds.jsp");
                 break;
             case 2:
-                game = roundPage(request, response);
+                roundPage(request, response);
+                response.sendRedirect("bankOffer.jsp");
                 break;
         }
 
@@ -64,10 +65,9 @@ public class Controller extends HttpServlet{
         return current;
     }
 
-    public gameBean roundPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void roundPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        gameBean current;
-        current = game;
+
         int num1 = 0, num2 = 0, num3 = 0, num4 = 0;
 
         switch(game.getRound()){
@@ -92,7 +92,10 @@ public class Controller extends HttpServlet{
         }
 
         if(num1 == game.getSecret() || num2 == game.getSecret() || num3 == game.getSecret() || num4 == game.getSecret()){
-            response.sendRedirect("start.jsp");
+
+            request.setAttribute("offer",generateBankOffer());
+            request.setAttribute("type", "win");
+            request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
         else{
             boolean worked = game.revealNum(num1);
@@ -109,15 +112,34 @@ public class Controller extends HttpServlet{
 
             game.incrementRound();
 
+            request.setAttribute("offer",generateBankOffer());
+            request.setAttribute("type", "continue");
+            request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
-
-
-
-        return current;
     }
 
     public int generateSecret(){
 
         return (int) (Math.random()* 11);
+    }
+
+    public int generateBankOffer(){
+
+        int offer = 0;
+
+        for(int i=0; i < game.getNums().length && offer == 0; i++){
+            if(game.getNums()[i] == 0 && i != game.getSecret()){
+                offer = i;
+            }
+        }
+
+        if(offer == 0){
+            offer = game.getSecret() * 100;
+        }
+        else{
+            offer = offer * 100;
+        }
+
+        return offer;
     }
 }

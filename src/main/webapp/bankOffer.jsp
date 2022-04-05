@@ -8,9 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Bank Offer</title>
 </head>
 <body>
+    <header><h1>!!!Bank Offer!!!</h1></header>
+
+    <%if(request.getAttribute("type").equals("win")){%>
+        <h2>You Won! Here is your prize: </h2>
+        <br/>
+        <p><%= request.getAttribute("offer")%></p>
+    <%} else{%>
+        <h2>The bank is offering:</h2>
+        <br/>
+        <p><%= request.getAttribute("offer")%></p>
+        <form action="game" method="post">
+            <input type="submit" value="accept">
+        </form>
+    <%}%>
 
 </body>
 </html>

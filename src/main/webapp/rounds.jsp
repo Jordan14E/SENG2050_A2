@@ -37,6 +37,7 @@
                 <br/>
             <%}%>
         <input type="submit" value="Submit">
+        <input type="hidden" value="2" name="pageID">
     </form>
 </body>
 </html>
