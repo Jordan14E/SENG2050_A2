@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: jeade
+  User: Jordan Eade
   Date: 25/03/2022
   Time: 10:28 am
   The start page is used as the entry page for the application. The start page gives the ability to create a new game or

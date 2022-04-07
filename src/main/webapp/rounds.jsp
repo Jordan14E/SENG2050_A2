@@ -1,6 +1,6 @@
 <%@ page import="pkg.gameBean" %><%--
   Created by IntelliJ IDEA.
-  User: jeade
+  User: Jordan Eade
   Date: 25/03/2022
   Time: 10:28 am
   To change this template use File | Settings | File Templates.
@@ -11,7 +11,9 @@
 <head>
     <title>Rounds</title>
     <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript">     <%--This javascript function detects when the page has been accessed using the back
+    button and immediately pushes the page back forward. This prevents the submission of any data impacting the
+    application or saved data--%>
         function preventBack() {
             window.history.forward();
         }
