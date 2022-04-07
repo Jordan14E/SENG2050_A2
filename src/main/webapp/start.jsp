@@ -3,13 +3,16 @@
   User: jeade
   Date: 25/03/2022
   Time: 10:28 am
-  To change this template use File | Settings | File Templates.
+  The start page is used as the entry page for the application. The start page gives the ability to create a new game or
+  load an existing game. The page differentiates between the two with the value passed by the button pressed and the field entered.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Secret Game</title>
-    <script type="text/javascript">
+    <script type="text/javascript"> <%--This javascript function detects when the page has been accessed using the back
+    button and immediately pushes the page back forward. This prevents the submission of any data impacting the
+    application or saved data--%>
         function preventBack() {
             window.history.forward();
         }
@@ -36,7 +39,7 @@
             <input type="hidden" value="1" name="pageID">
         </form>
     </div>
-    <%if(request.getParameter("error") != null){%>
+    <%if(request.getParameter("error") != null){%>  <%--logic to display the error message if applicable--%>
         <p class="error">The entered username could not be found.</p>
     <%}%>
 </body>
