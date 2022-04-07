@@ -28,5 +28,8 @@
             <input type="hidden" value="1" name="pageID">
         </form>
     </div>
+    <%if(request.getParameter("error") != null){%>
+        <p class="error">The entered username could not be found.</p>
+    <%}%>
 </body>
 </html>

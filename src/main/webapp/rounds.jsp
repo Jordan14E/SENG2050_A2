@@ -13,7 +13,7 @@
 </head>
 <body>
     <header><h1>Choose your numbers </h1></header>
-
+    <div>
     <form action="game" method="post">
         <% int round = (int) request.getAttribute("round");
             if(round >= 1){%>
@@ -39,5 +39,10 @@
         <input type="submit" value="Submit">
         <input type="hidden" value="2" name="pageID">
     </form>
+    </div>
+    <%if(request.getAttribute("error") != null){%>
+        <p class="error"><%=(int)request.getAttribute("revealed")%> has been selected in a previous round. Please choose a new number.</p>
+    <%}%>
+
 </body>
 </html>

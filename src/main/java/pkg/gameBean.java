@@ -64,4 +64,14 @@ public class gameBean {
     public void incrementRound(){
         round++;
     }
+
+    public boolean isRevealed(int num){
+        num-=1;
+        if(nums[num] == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

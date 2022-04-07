@@ -33,7 +33,7 @@ public class Controller extends HttpServlet{
             case 1:
                 game = startPage(request, response);
                 if(game == null){   //startPage didn't work for some reason
-                    response.sendRedirect("start.jsp");
+                    response.sendRedirect("start.jsp?error=true");
                 }
                 else {
                     response.sendRedirect("rounds.jsp");
@@ -102,29 +102,58 @@ public class Controller extends HttpServlet{
                 break;
         }
 
-        if(num1 == game.getSecret() || num2 == game.getSecret() || num3 == game.getSecret() || num4 == game.getSecret()){
+        if(game.isRevealed(num1) || (num2>0 && game.isRevealed(num2)) || (num3>0 && game.isRevealed(num3)) || (num4>0 && game.isRevealed(num4))){
+            request.setAttribute("game", game);
+            request.setAttribute("round", game.getRound());
+            request.setAttribute("error", "true");
+            if(game.isRevealed(num1)){
+                request.setAttribute("revealed", num1);
+            }
+            else if(game.isRevealed(num2) && num2>0){
+                request.setAttribute("revealed", num2);
+            }
+            else if(game.isRevealed(num3) && num3>0){
+                request.setAttribute("revealed", num3);
+            }
+            else if(game.isRevealed(num4) && num4>0){
+                request.setAttribute("revealed", num4);
+            }
+            request.getRequestDispatcher("rounds.jsp").forward(request, response);
+        }
+        else if(num1 == game.getSecret() || num2 == game.getSecret() || num3 == game.getSecret() || num4 == game.getSecret()){
             request.setAttribute("type", "loss");
+            request.setAttribute("secret", game.getSecret());
             request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
         else{
-            boolean worked = game.revealNum(num1);
-            if(num2>0 && worked){
-            worked = game.revealNum(num2);}
-            if(num3>0 && worked){
-            worked = game.revealNum(num3);}
-            if(num4>0 && worked){
-            worked = game.revealNum(num4);}
-
-            if(!worked){
-                request.setAttribute("game", game);
-                request.setAttribute("round", game.getRound());
-                request.getRequestDispatcher("rounds.jsp").forward(request, response);
-            }
+            game.revealNum(num1);
+            if(num2>0){
+            game.revealNum(num2);}
+            if(num3>0){
+            game.revealNum(num3);}
+            if(num4>0){
+            game.revealNum(num4);}
 
             game.incrementRound();
 
+            int[] nums = game.getNums();
+            int count = 0;
+            for(int i=0; i<nums.length; i++){
+                if(nums[i] == 0){
+                    count++;
+                }
+            }
+            int[] unrevealed = new int[count];
+            count = 0;
+            for(int i=0; i<nums.length; i++){
+                if(nums[i] == 0){
+                    unrevealed[count] = i+1;
+                    count++;
+                }
+            }
             request.setAttribute("offer",generateBankOffer());
             request.setAttribute("type", "continue");
+            request.setAttribute("nums", unrevealed);
             request.getRequestDispatcher("bankOffer.jsp").forward(request, response);
         }
     }
@@ -156,7 +185,7 @@ public class Controller extends HttpServlet{
 
     public int generateSecret(){
 
-        return (int) (Math.random()* 11);
+        return (int) ((Math.random()* 10)+1);
     }
 
     public int generateBankOffer(){
