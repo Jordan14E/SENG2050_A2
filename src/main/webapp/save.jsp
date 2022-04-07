@@ -3,7 +3,7 @@
   User: Jordan Eade
   Date: 25/03/2022
   Time: 10:28 am
-  To change this template use File | Settings | File Templates.
+  The save page is used to ask the user if they want to save their game or continue. A form with two buttons achieve this
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
