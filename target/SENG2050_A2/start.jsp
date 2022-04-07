@@ -9,6 +9,13 @@
 <html>
 <head>
     <title>Secret Game</title>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <header>
@@ -28,5 +35,8 @@
             <input type="hidden" value="1" name="pageID">
         </form>
     </div>
+    <%if(request.getParameter("error") != null){%>
+        <p class="error">The entered username could not be found.</p>
+    <%}%>
 </body>
 </html>

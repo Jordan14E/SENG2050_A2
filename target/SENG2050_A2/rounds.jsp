@@ -10,34 +10,48 @@
 <html>
 <head>
     <title>Rounds</title>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <header><h1>Choose your numbers </h1></header>
+    <div>
+        <% int round = (int) request.getAttribute("round");%>
+    <form action="game" name="roundForm" method="post" onsubmit="return roundValidation(<%=round%>)">
 
-    <form action="game" method="post">
-        <% int round = (int) request.getAttribute("round");
-            if(round >= 1){%>
-                <label for="1">Select 1st Number: </label>
-                <input type="number" min="1" max="11" name="1" id="1">
+            <%if(round >= 1){%>
+                <label for="first">Select 1st Number: </label>
+                <input type="number" min="1" max="11" name="1" id="first">
                 <br/>
            <%}%>
             <%if(round >= 2){%>
-                <label for="2">Select 2nd Number: </label>
-                <input type="number" min="1" max="11" name="2" id="2">
+                <label for="second">Select 2nd Number: </label>
+                <input type="number" min="1" max="11" name="2" id="second">
                 <br/>
             <%}%>
             <%if(round >= 3){%>
-                <label for="3">Select 3rd Number: </label>
-                <input type="number" min="1" max="11" name="3" id="3">
+                <label for="third">Select 3rd Number: </label>
+                <input type="number" min="1" max="11" name="3" id="third">
                 <br/>
             <%}%>
             <%if(round >= 4){%>
-                <label for="4">Select 4th Number: </label>
-                <input type="number" min="1" max="11" name="4" id="4">
+                <label for="fourth">Select 4th Number: </label>
+                <input type="number" min="1" max="11" name="4" id="fourth">
                 <br/>
             <%}%>
         <input type="submit" value="Submit">
         <input type="hidden" value="2" name="pageID">
     </form>
+    </div>
+    <%if(request.getAttribute("error") != null){%>
+        <p class="error"><%=(int)request.getAttribute("revealed")%> has been selected in a previous round. Please choose a new number.</p>
+    <%}%>
+
 </body>
 </html>

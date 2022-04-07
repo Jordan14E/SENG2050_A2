@@ -9,6 +9,14 @@
 <html>
 <head>
     <title>Bank Offer</title>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <header><h1>!!!Bank Offer!!!</h1></header>
