@@ -9,6 +9,13 @@
 <html>
 <head>
     <title>Save Game</title>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <header><h1>Would you like to save and exit your game?</h1></header>

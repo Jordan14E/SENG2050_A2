@@ -65,6 +65,8 @@ public class gameBean {
         round++;
     }
 
+    public void decrementRound(){round--;}
+
     public boolean isRevealed(int num){
         num-=1;
         if(nums[num] == 1){
