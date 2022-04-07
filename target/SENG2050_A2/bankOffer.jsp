@@ -17,6 +17,7 @@
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
     </script>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
     <header><h1>!!!Bank Offer!!!</h1></header>

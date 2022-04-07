@@ -18,10 +18,11 @@
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
     </script>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
     <header><h1>Choose your numbers </h1></header>
-    <div>
+    <div class="form">
         <% int round = (int) request.getAttribute("round");%>
     <form action="game" name="roundForm" method="post" onsubmit="return roundValidation(<%=round%>)">
 

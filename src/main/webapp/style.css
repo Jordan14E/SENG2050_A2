@@ -2,9 +2,14 @@ h1{font-family: sans-serif;
     text-align: center;
     margin: 50px;}
 
-html{background: lightgray;}
+html{background: lightgray;
+text-align: center;}
 
 .form{margin: auto;
     text-align: center;}
 
 br{margin: 25px;}
+
+button{margin: 0px 60px 0px 60px}
+
+p{margin: 40px}
