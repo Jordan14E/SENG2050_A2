@@ -22,7 +22,7 @@
     <header>
         <h1>The Secret Game</h1>
     </header>
-    <div>
+    <div class="form">
         <form action="game" method="post">
             <label for="newUser">New Username: </label>
             <input type="text" name="newUser" id="newUser">
