@@ -21,8 +21,3 @@ function roundValidation(round) {
      return true;
  }
 }
-
-// window.onpopstate = function() {
-//     alert("Operation cannot be performed");
-// }; history.pushState(null, null, "http://localhost:8080/SENG2050_A2_war_exploded/start.jsp");
-
