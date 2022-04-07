@@ -1,17 +1,21 @@
 <%@ page import="pkg.gameBean" %><%--
   Created by IntelliJ IDEA.
-  User: jeade
+  User: Jordan Eade
   Date: 25/03/2022
   Time: 10:28 am
-  To change this template use File | Settings | File Templates.
+  The rounds page is used to take the numbers the user wants to input for their guesses and send them to the controller object
+  through a form. The page uses javascript validation to ensure there are no duplicates entered in the one submission and uses
+  the attributes of the number input type to ensure numbers are in the correct range.
 --%>
-<%--<jsp:useBean id="sessionBean" class="pkg.sessionBean" scope="session"/> --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Rounds</title>
     <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript">     <%--This javascript function detects when the page has been accessed using the back
+    button and immediately pushes the page back forward. This prevents the submission of any data impacting the
+    application or saved data--%>
         function preventBack() {
             window.history.forward();
         }

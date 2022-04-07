@@ -6,6 +6,7 @@
   The bankOffer page is used to display the amount the bank is offering, tell the player they have lost when they reveal the
   secret number or tell the player they have won when they reach the end of round 4 without revealing the secret number
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,8 +25,8 @@
 </head>
 <body>
     <header><h1>!!!Bank Offer!!!</h1></header>
-
-    <%if(request.getAttribute("type").equals("win")){%> <%--Logic to display win content if passed by controller--%>
+    <%--Logic to display win content if passed by controller--%>
+    <%if(request.getAttribute("type").equals("win")){%>
         <h2>You Won! Here is your prize: </h2>
         <br/>
         <p><%= request.getAttribute("offer")%></p>
@@ -33,17 +34,20 @@
         <button type="submit" value="accept" name="submit">Accept</button>
         <input type="hidden" value="3" name="pageID">
     </form>
-    <%} else if(request.getAttribute("type").equals("loss")){%>     <%--Logic to display loss page if passed by controller--%>
+    <%--Logic to display loss page if passed by controller--%>
+    <%} else if(request.getAttribute("type").equals("loss")){%>
     <h2>You lost!</h2>
     <p>Unfortunately you revealed the secret number. Better luck next time!<br/>
     The number was <%=(int)request.getAttribute("secret")%></p><br/>
     <form action="game" method="post">
         <button type="submit" value="accept" name="submit">Exit</button>
         <input type="hidden" value="3" name="pageID">
-    <%} else{%>     <%--Logic to display regular bankOffer page if not a win or loss--%>
+        <%--Logic to display regular bankOffer page if not a win or loss--%>
+    <%} else{%>
         <h2>Remaining numbers:</h2>
     <p>
-        <% int[] nums = (int[]) request.getAttribute("nums");   <%--Logic to output the list of numbers not yet revealed--%>
+        <%--Logic to output the list of numbers not yet revealed--%>
+        <% int[] nums = (int[]) request.getAttribute("nums");
         for(int i=0; i< nums.length; i++){ %>
             <%= nums[i]%>
         <%}
@@ -52,7 +56,8 @@
 
         <h2>The bank is offering:</h2>
         <br/>
-        <p><%= request.getAttribute("offer")%></p>      <%--displaying the bank offer amount--%>
+        <%--displaying the bank offer amount--%>
+        <p><%= request.getAttribute("offer")%></p>
         <form action="game" method="post">
             <button type="submit" value="accept" name="submit">Accept</button>
             <button type="submit" value="continue" name="submit">Continue</button>
