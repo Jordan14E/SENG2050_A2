@@ -27,24 +27,29 @@
 <body>
     <header><h1>Choose your numbers </h1></header>
     <div class="form">
-        <% int round = (int) request.getAttribute("round");%>
+        <% int round = (int) request.getAttribute("round");%>   <%--creating the local round variable to decide the
+        number of inputs--%>
     <form action="game" name="roundForm" method="post" onsubmit="return roundValidation(<%=round%>)">
 
+            <%--Logic for round 1 display--%>
             <%if(round >= 1){%>
                 <label for="first">Select 1st Number: </label>
                 <input type="number" min="1" max="11" name="1" id="first">
                 <br/>
            <%}%>
+            <%--Logic for round 2 display--%>
             <%if(round >= 2){%>
                 <label for="second">Select 2nd Number: </label>
                 <input type="number" min="1" max="11" name="2" id="second">
                 <br/>
             <%}%>
+                <%--Logic for round 3 display--%>
             <%if(round >= 3){%>
                 <label for="third">Select 3rd Number: </label>
                 <input type="number" min="1" max="11" name="3" id="third">
                 <br/>
             <%}%>
+                <%--Logic for round 4 display--%>
             <%if(round >= 4){%>
                 <label for="fourth">Select 4th Number: </label>
                 <input type="number" min="1" max="11" name="4" id="fourth">
@@ -54,6 +59,7 @@
         <input type="hidden" value="2" name="pageID">
     </form>
     </div>
+    <%--Logic to display error message if applicable--%>
     <%if(request.getAttribute("error") != null){%>
         <p class="error"><%=(int)request.getAttribute("revealed")%> has been selected in a previous round. Please choose a new number.</p>
     <%}%>

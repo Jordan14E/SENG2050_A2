@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Controller extends HttpServlet{
@@ -89,13 +90,13 @@ public class Controller extends HttpServlet{
         //if it is a legitimate call of the startPage() method data manipulation will occur
         else{
             //if the user selected to create a new game and provided a username
-            if(request.getParameter("submit").equals("New") && request.getParameter("newUser")!= null){
+            if(request.getParameter("submit").equals("New") && !Objects.equals(request.getParameter("newUser"), "")){
                 int secret = generateSecret();
                 games.addGame(secret, request.getParameter("newUser"));     // creating game and adding to the data structure
                 current = games.findGame(request.getParameter("newUser"));  //retrieving the game
             }
             //if the user has selected existing game and provided a username
-            else if(request.getParameter("submit").equals("Existing") && request.getParameter("oldUser")!= null){
+            else if(request.getParameter("submit").equals("Existing") && !Objects.equals(request.getParameter("oldUser"), "")){
                 current = games.findGame(request.getParameter("oldUser"));  //finding the game
                 if(current == null){    //if the game is null, there is no game linked to this username and an error will be displayed
                     return current;
