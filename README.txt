@@ -13,7 +13,7 @@ Objects
 
     SessionBean.java
 
-        The sessionBean is another javaBean. The sessionBean is used to store all gameBeans that have been created. The sessionBean
+        The sessionBean is a javaBean. The sessionBean is used to store all gameBeans that have been created. The sessionBean
         uses a HashMap to store each game bean, with the key being the username entered when creating the game.
 
     bankOffer.jsp
